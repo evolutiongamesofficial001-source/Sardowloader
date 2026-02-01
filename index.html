@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>S.A.R - Evolution Studio</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:"Poppins",sans-serif;
+}
+
+body{
+  background:#000;
+  color:white;
+  overflow-x:hidden;
+}
+
+/* FUNDO PREMIUM ANIMADO */
+.bg{
+  position:fixed;
+  inset:0;
+  background:linear-gradient(120deg,#020024,#090979,#00d4ff,#090979,#020024);
+  background-size:600% 600%;
+  animation:bgAnim 20s ease infinite;
+  z-index:-2;
+}
+
+@keyframes bgAnim{
+  0%{background-position:0% 50%;}
+  50%{background-position:100% 50%;}
+  100%{background-position:0% 50%;}
+}
+
+/* CONTAINER MOBILE */
+.container{
+  max-width:500px;
+  margin:auto;
+  padding:20px;
+}
+
+/* CARD APP */
+.app-card{
+  background:rgba(0,0,0,.6);
+  backdrop-filter:blur(14px);
+  border-radius:22px;
+  padding:22px;
+  border:1px solid rgba(255,255,255,.08);
+  box-shadow:0 20px 60px rgba(0,0,0,.7);
+}
+
+/* TOPO APP */
+.app-header{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+
+.app-title{
+  font-size:2.2rem;
+  font-weight:700;
+  letter-spacing:1px;
+}
+
+.app-dev{
+  font-size:.95rem;
+  opacity:.8;
+}
+
+.app-meta{
+  display:flex;
+  gap:12px;
+  margin-top:6px;
+  font-size:.85rem;
+  opacity:.9;
+}
+
+.meta-box{
+  background:rgba(255,255,255,.1);
+  padding:6px 12px;
+  border-radius:999px;
+}
+
+/* BOTÃO */
+.download-area{
+  margin-top:22px;
+}
+
+.btn-download{
+  width:100%;
+  padding:15px;
+  border:none;
+  border-radius:14px;
+  font-size:1.05rem;
+  font-weight:700;
+  background:linear-gradient(45deg,#00e5ff,#00b4d8,#0077b6);
+  color:white;
+  cursor:pointer;
+  box-shadow:0 0 25px rgba(0,229,255,.6);
+  transition:.25s;
+}
+
+.btn-download:active{
+  transform:scale(.98);
+}
+
+/* INFO APP */
+.app-info-row{
+  display:flex;
+  justify-content:space-between;
+  margin-top:12px;
+  font-size:.9rem;
+  opacity:.85;
+}
+
+/* PROGRESSO */
+.progress-box{
+  margin-top:14px;
+  display:none;
+}
+
+.progress-text{
+  font-size:.9rem;
+  margin-bottom:6px;
+}
+
+.progress-bar{
+  width:100%;
+  height:9px;
+  background:rgba(255,255,255,.15);
+  border-radius:999px;
+  overflow:hidden;
+}
+
+.progress{
+  width:0%;
+  height:100%;
+  background:linear-gradient(90deg,#00e5ff,#00b4d8);
+  transition:.25s;
+}
+
+/* DESCRIÇÃO */
+.description{
+  margin-top:26px;
+  font-size:.98rem;
+  line-height:1.7;
+  opacity:.95;
+}
+
+.description h3{
+  margin-bottom:8px;
+  font-size:1.2rem;
+  color:#00e5ff;
+}
+
+/* TABELA SIMPLES */
+.table-box{
+  margin-top:22px;
+}
+
+table{
+  width:100%;
+  border-collapse:collapse;
+  font-size:.95rem;
+}
+
+td{
+  padding:9px 10px;
+  border-bottom:1px solid rgba(255,255,255,.12);
+}
+
+td:first-child{
+  font-weight:600;
+}
+
+td:last-child{
+  text-align:right;
+}
+
+.footer-note{
+  margin-top:10px;
+  font-size:.85rem;
+  opacity:.7;
+  text-align:center;
+}
+</style>
+</head>
+<body>
+
+<div class="bg"></div>
+
+<div class="container">
+  <div class="app-card">
+
+    <div class="app-header">
+      <div class="app-title">S.A.R</div>
+      <div class="app-dev">Evolution Studio • Inteligência Artificial</div>
+
+      <div class="app-meta">
+        <div class="meta-box">IA</div>
+        <div class="meta-box">Tech</div>
+        <div class="meta-box">Produtividade</div>
+      </div>
+    </div>
+
+    <div class="download-area">
+      <button class="btn-download" id="downloadBtn">Instalar</button>
+
+      <div class="app-info-row">
+        <span>📦 Tamanho: <span id="fileSize">...</span></span>
+        <span>📥 Downloads: <span id="downloadCount">...</span></span>
+      </div>
+
+      <div class="progress-box" id="progressBox">
+        <div class="progress-text" id="progressText">Iniciando análise de segurança...</div>
+        <div class="progress-bar">
+          <div class="progress" id="progress"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="description">
+      <h3>Sobre a S.A.R</h3>
+      <p>
+        A S.A.R é uma inteligência artificial desenvolvida pela Evolution Studio para auxiliar usuários
+        em dúvidas, estudos e tarefas cotidianas. Criada com foco em leveza, eficiência e simplicidade,
+        a S.A.R entrega respostas rápidas e suporte inteligente de forma acessível.
+      </p>
+      <p>
+        Mesmo sendo uma IA básica, a S.A.R representa um avanço tecnológico, unindo inovação,
+        usabilidade e desempenho em um sistema moderno e intuitivo.
+      </p>
+      <p>
+        Ideal para estudantes, curiosos e usuários que buscam uma ferramenta prática,
+        a S.A.R continua evoluindo com melhorias constantes e novos recursos.
+      </p>
+    </div>
+
+    <div class="table-box">
+      <table>
+        <tr><td>Reconhecimento de texto</td><td>Sim</td></tr>
+        <tr><td>Responde por texto</td><td>Sim</td></tr>
+        <tr><td>Analisa imagem</td><td>Não</td></tr>
+        <tr><td>Gera imagem</td><td>Não</td></tr>
+        <tr><td>Analisa arquivo</td><td>Não</td></tr>
+      </table>
+    </div>
+
+    <div class="footer-note">
+      Apenas uma IA básica para atividades básicas.
+    </div>
+
+  </div>
+</div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js";
+import { getDatabase, ref, get, runTransaction } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-database.js";
+
+/* FIREBASE */
+const firebaseConfig = {
+  databaseURL: "https://conta-estram-default-rtdb.firebaseio.com/"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
+const counterRef = ref(db, "downloads");
+
+async function loadDownloads(){
+  const snap = await get(counterRef);
+  let val = snap.exists() ? snap.val() : 0;
+  document.getElementById("downloadCount").innerText = val;
+}
+loadDownloads();
+
+/* TAMANHO REAL DO APK */
+async function loadFileSize(){
+  try{
+    const res = await fetch("app-release.apk", { method: "HEAD" });
+    const size = res.headers.get("content-length");
+    if(size){
+      const mb = (size / (1024*1024)).toFixed(2);
+      document.getElementById("fileSize").innerText = mb + " MB";
+    }else{
+      document.getElementById("fileSize").innerText = "Desconhecido";
+    }
+  }catch(e){
+    document.getElementById("fileSize").innerText = "Indisponível";
+  }
+}
+loadFileSize();
+
+/* DOWNLOAD COM ANIMAÇÃO */
+const btn = document.getElementById("downloadBtn");
+const box = document.getElementById("progressBox");
+const bar = document.getElementById("progress");
+const text = document.getElementById("progressText");
+
+btn.onclick = async () => {
+  btn.disabled = true;
+  box.style.display = "block";
+  bar.style.width = "0%";
+
+  const steps = [
+    "Escaneando aplicativo...",
+    "Verificando vulnerabilidades...",
+    "Validando assinatura digital...",
+    "Executando teste de segurança...",
+    "Autorizando instalação..."
+  ];
+
+  let progress = 0;
+
+  for(let i=0;i<steps.length;i++){
+    text.innerText = steps[i];
+    for(let j=0;j<20;j++){
+      progress += 1;
+      bar.style.width = progress + "%";
+      await new Promise(r=>setTimeout(r,40));
+    }
+  }
+
+  await runTransaction(counterRef, (current) => {
+    return (current || 0) + 1;
+  });
+
+  loadDownloads();
+  text.innerText = "Download liberado ✔";
+
+  setTimeout(()=>{
+    window.location.href = "app-release.apk";
+    btn.disabled = false;
+  }, 800);
+};
+</script>
+
+</body>
+</html>
