@@ -281,7 +281,7 @@ loadDownloads();
 /* TAMANHO REAL DO APK */
 async function loadFileSize(){
   try{
-    const res = await fetch("app-release.apk", { method: "HEAD" });
+    const res = await fetch("saria.apk", { method: "HEAD" });
     const size = res.headers.get("content-length");
     if(size){
       const mb = (size / (1024*1024)).toFixed(2);
@@ -333,7 +333,7 @@ btn.onclick = async () => {
   text.innerText = "Download liberado ✔";
 
   setTimeout(()=>{
-    window.location.href = "app-release.apk";
+    window.location.href = "saria.apk";
     btn.disabled = false;
   }, 800);
 };
